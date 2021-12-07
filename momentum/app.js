@@ -25,10 +25,18 @@ function onLoginBtnClick() {
 // SubmitEvent
 const loginForm = document.querySelector('#login-form');
 
+const greeting = document.querySelector('#greeting');
+
+const HIDDEN_CLASSNAME = 'hidden';
+
 function onLoginSubmit(event) {
   // event에 대한 정보를 담아줌
   event.preventDefault(); // 브라우저의 기본 동작(submit 새로고침)을 막아줌
-  console.log(loginInput.value);
+  // console.log(loginInput.value);
+  loginForm.classList.add(HIDDEN_CLASSNAME);
+  const username = loginInput.value;
+  greeting.innerText = `Hello ${username}`;
+  greeting.classList.remove(HIDDEN_CLASSNAME);
 }
 
 loginForm.addEventListener('submit', onLoginSubmit);
