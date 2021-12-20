@@ -24,10 +24,10 @@ function onLoginBtnClick() {
 
 // SubmitEvent
 const loginForm = document.querySelector('#login-form');
-
 const greeting = document.querySelector('#greeting');
 
 const HIDDEN_CLASSNAME = 'hidden';
+const USERNAME_KEY = 'username';
 
 function onLoginSubmit(event) {
   // event에 대한 정보를 담아줌
@@ -35,11 +35,31 @@ function onLoginSubmit(event) {
   // console.log(loginInput.value);
   loginForm.classList.add(HIDDEN_CLASSNAME);
   const username = loginInput.value;
+  localStorage.setItem(USERNAME_KEY, username);
+  // localStorage.setItem(USERNAME_KEY, loginInput.value);
+  // greeting.innerText = `Hello ${username}`;
+  // greeting.classList.remove(HIDDEN_CLASSNAME);
+  paintGreetings(username);
+  // paintGreetings();
+}
+
+function paintGreetings(username) {
+  // const username = localStorage.getItem(USERNAME_KEY);
   greeting.innerText = `Hello ${username}`;
   greeting.classList.remove(HIDDEN_CLASSNAME);
 }
 
-loginForm.addEventListener('submit', onLoginSubmit);
+const savedUsername = localStorage.getItem(USERNAME_KEY);
+
+if (savedUsername === null) {
+  loginForm.classList.remove(HIDDEN_CLASSNAME);
+  loginForm.addEventListener('submit', onLoginSubmit);
+} else {
+  // greeting.innerText = `Hello ${savedUsername}`;
+  // greeting.classList.remove(HIDDEN_CLASSNAME);
+  paintGreetings(savedUsername);
+  // paintGreetings();
+}
 
 // MouseEvent
 const link = document.querySelector('a');
