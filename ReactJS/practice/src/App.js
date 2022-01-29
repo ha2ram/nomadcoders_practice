@@ -1,10 +1,12 @@
 import './App.css';
 import ToDoList from './ToDoList';
+import CoinTracker from './CoinTracker';
 
 function App() {
   return (
     <div>
-      <ToDoList />
+      {/* <ToDoList /> */}
+      <CoinTracker />
     </div>
   );
 }
